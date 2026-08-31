@@ -29,7 +29,7 @@ public class MyRunner implements ApplicationRunner {
         //Iterable의 forEach(Consumer)
         //Consumer의 추상메서드 void accep(T t)
         //Consumer 인터페이스를 람다식으로 표현
-        args.getOptionNames().forEach(name-> System.out.println(name));
+        args.getOptionNames().forEach(name-> System.out.println("Name = " + name));
 
         //Consumer 인터페이스를 Method Reference로 표현
         args.getOptionNames().forEach(System.out::println);
