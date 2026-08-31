@@ -45,8 +45,9 @@ public class MyRunner implements ApplicationRunner {
         //Consumer 인터페이스를 Method Reference로 표현
         args.getOptionNames().forEach(System.out::println);
 
-        System.out.println("${myboot.name}" + name);
-        System.out.println("${myboot.age}" + age);
+        System.out.println("${myboot.name} = " + name);
+        System.out.println("${myboot.age} = " + age);
+        System.out.println("${myboot.fullName} = " + environment.getProperty("myboot.fullName"));
 
     }
 }
