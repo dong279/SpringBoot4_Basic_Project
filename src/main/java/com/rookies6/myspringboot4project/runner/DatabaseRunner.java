@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 
 @Component
-@Order(1)
+@Order(1) //1이 우선순위가 높음
 @Slf4j
 public class DatabaseRunner implements ApplicationRunner {
     @Autowired
