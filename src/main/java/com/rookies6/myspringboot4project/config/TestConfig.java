@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Profile;
 public class TestConfig {
     @Bean
     public CustomVO customVO() {
-        return CustomVO.builder().mode("테스트환경").rate(0.5).build();
+        return CustomVO.builder() //CustomerVOBuilder
+                .mode("테스트환경")
+                .rate(0.5)
+                .build();
     }
 }
