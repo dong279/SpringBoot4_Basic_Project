@@ -22,5 +22,5 @@ public class Customer {
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
-    private LocalDateTime createAt = LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
