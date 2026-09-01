@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.function.Consumer;
 
 @Component
-public class MyRunner implements ApplicationRunner {
+public class    MyRunner implements ApplicationRunner {
     @Value("${spring.application.name}")
     String applicationName;
 
