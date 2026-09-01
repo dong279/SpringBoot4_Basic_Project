@@ -37,6 +37,7 @@ public class    MyRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        logger.info("Logger 구현체 클래스 명 {}" , logger.getClass().getName());
         logger.debug("MyRunner run() 호출됨!");
         System.out.println("application Name: " + applicationName);
 
