@@ -4,14 +4,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-//@Profile("test")
+//@Profile("prod")
 @Configuration
-public class TestConfig {
+public class ProdConfig {
     @Bean
     public CustomVO customVO() {
-        return CustomVO.builder() //CustomerVOBuilder
-                .mode("테스트환경")
-                .rate(0.5)
+        return CustomVO
+                .builder()
+                .mode("운영환경")
+                .rate(1.5)
                 .build();
     }
 }
