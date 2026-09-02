@@ -33,6 +33,7 @@ class CustomerRepositoryTest {
         Optional<Customer> optionalCustomer = customerRepository.findById(1L);
         if(optionalCustomer.isPresent()){
             Customer existCustomer = optionalCustomer.get();
+            assertThat(existCustomer.getId()).isEqualTo(1L);
         }
     }
 }
