@@ -1,4 +1,4 @@
-package com.rookies6.myspringboot4project.Entity;
+package com.rookies6.myspringboot4project.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

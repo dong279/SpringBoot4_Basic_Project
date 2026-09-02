@@ -1,6 +1,6 @@
 package com.rookies6.myspringboot4project.repository;
 
-import com.rookies6.myspringboot4project.Entity.Customer;
+import com.rookies6.myspringboot4project.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
