@@ -4,6 +4,8 @@ import com.rookies6.myspringboot4project.Entity.Customer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -11,11 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@Transactional
 class CustomerRepositoryTest {
     @Autowired
     CustomerRepository customerRepository;
 
+    //1. Customer 등록
     @Test
+    @Rollback(value = false) //등록된 데이터를 확인하려고 하니 Rollback 처리 x
 //    void testCreate(){
 //        //Given (준비단계)
 //        Customer customer = new Customer();
@@ -30,13 +35,13 @@ class CustomerRepositoryTest {
     void testCreate(){
         //Given (준비단계)
         Customer customer = new Customer();
-        customer.setCustomerId("B001");
-        customer.setCustomerName("길동");
+        customer.setCustomerId("D002");
+        customer.setCustomerName("길동3");
         //When (실행단계)
         Customer addCustomer = customerRepository.save(customer);
         //Then (검증단계)
         assertThat(addCustomer).isNotNull();
-        assertThat(addCustomer.getCustomerName()).isEqualTo("길동");
+        assertThat(addCustomer.getCustomerName()).isEqualTo("길동3");
     }
 
     @Test
@@ -65,7 +70,16 @@ class CustomerRepositoryTest {
 
         // orElseThrow(Supplier) 사용 X () -> X ==> X extends Throwable
         //public <X extends Throwable> T orElseThrow(Supplier<? extends X> exceptionSupplier)
-        customerRepository.findById(3L)
+        Customer notFound = customerRepository.findById(3L)
                 .orElseThrow(() -> new RuntimeException("Customer Not Found"));
     }
+
+    @Test
+    @Rollback(value = false)
+    void testUpdate(){
+        customerRepository.findByCustomerId("A004")
+                .orElseGet(()->new Customer());
+    }
+
+
 }
