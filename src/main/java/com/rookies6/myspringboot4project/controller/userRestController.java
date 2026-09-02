@@ -30,8 +30,10 @@ public class userRestController {
 
     @RequestMapping(value = "/{id}")
     public User getUser(@PathVariable Long id){
-        Optional<User> optionalUser = userRepository.findById(id);
-        User existUser = optionalUser.orElseThrow();
+        Optional<User> optionalUser = userRepository.findById(id); //Optional<User>
+        //orElseThrow(Supplier) Supplier의 추상 메서드 ()->T
+        User existUser = optionalUser.orElseThrow(
+                ()->new BusinessException("User Not Found",HttpStatus.NOT_FOUND));
         return existUser;
     }
 }
