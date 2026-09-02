@@ -45,7 +45,10 @@ class CustomerRepositoryTest {
     void testFindByNotFound(){
         //Optional 의 orElseGet(Supplier) Supplier의 추상메서드 T get() () -> T
         // orElseThrow(Supplier) 사용 X () -> X ==> X extends Throwable
-        customerRepository.findByCustomerId("B001")
-                .orElseGet(() -> new Customer()); //Optional<Customer>
+//        customerRepository.findByCustomerId("B001")
+//                .orElseGet(() -> new Customer()); //Optional<Customer>
+        Customer notFoundCustomer = customerRepository.findByCustomerId("A004")
+                .orElseGet(()-> new Customer());
+        assertThat(notFoundCustomer.getCustomerId()).isEqualTo("A004");
     }
 }
