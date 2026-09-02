@@ -1,14 +1,12 @@
 package com.rookies6.myspringboot4project.controller;
 
 import com.rookies6.myspringboot4project.entity.User;
-import com.rookies6.myspringboot4project.repository.CustomerRepository;
+import com.rookies6.myspringboot4project.exception.BusinessException;
 import com.rookies6.myspringboot4project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -26,5 +24,11 @@ public class userRestController {
     @PostMapping
     public User createUser(@RequestBody User userDetail){
         return userRepository.save(userDetail);
+    }
+
+    @RequestMapping(value = "/{id}")
+    public User getUser(@PathVariable Long id){
+        return userRepository.findById(id)
+                .orElseThrow(()-> new BusinessException("User Not Found", HttpStatus.NOT_FOUND));
     }
 }
