@@ -16,16 +16,27 @@ class CustomerRepositoryTest {
     CustomerRepository customerRepository;
 
     @Test
+//    void testCreate(){
+//        //Given (준비단계)
+//        Customer customer = new Customer();
+//        customer.setCustomerId("A004");
+//        customer.setCustomerName("둘리");
+//        //When (실행단계)
+//        Customer addCustomer = customerRepository.save(customer);
+//        //Then (검증단계)
+//        assertThat(addCustomer).isNotNull();
+//        assertThat(addCustomer.getCustomerName()).isEqualTo("둘리");
+//    }
     void testCreate(){
         //Given (준비단계)
         Customer customer = new Customer();
-        customer.setCustomerId("A004");
-        customer.setCustomerName("둘리");
+        customer.setCustomerId("B001");
+        customer.setCustomerName("길동");
         //When (실행단계)
         Customer addCustomer = customerRepository.save(customer);
         //Then (검증단계)
         assertThat(addCustomer).isNotNull();
-        assertThat(addCustomer.getCustomerName()).isEqualTo("둘리");
+        assertThat(addCustomer.getCustomerName()).isEqualTo("길동");
     }
 
     @Test
@@ -44,11 +55,17 @@ class CustomerRepositoryTest {
     @Test
     void testFindByNotFound(){
         //Optional 의 orElseGet(Supplier) Supplier의 추상메서드 T get() () -> T
-        // orElseThrow(Supplier) 사용 X () -> X ==> X extends Throwable
+
 //        customerRepository.findByCustomerId("B001")
 //                .orElseGet(() -> new Customer()); //Optional<Customer>
-        Customer notFoundCustomer = customerRepository.findByCustomerId("A004")
+        Customer notFoundCustomer = customerRepository.findByCustomerId("B001")
                 .orElseGet(()-> new Customer());
-        assertThat(notFoundCustomer.getCustomerId()).isEqualTo("A004");
+//        assertThat(notFoundCustomer.getCustomerId()).isEqualTo("A004");
+        assertThat(notFoundCustomer.getCustomerId()).isNull();
+
+        // orElseThrow(Supplier) 사용 X () -> X ==> X extends Throwable
+        //public <X extends Throwable> T orElseThrow(Supplier<? extends X> exceptionSupplier)
+        customerRepository.findById(3L)
+                .orElseThrow(() -> new RuntimeException("Customer Not Found"));
     }
 }
