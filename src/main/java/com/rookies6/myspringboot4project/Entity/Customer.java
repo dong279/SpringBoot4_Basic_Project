@@ -23,4 +23,6 @@ public class Customer {
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    private String testName;
 }
