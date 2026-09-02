@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @Slf4j
 @RequestMapping("/api/users")
@@ -28,7 +30,8 @@ public class userRestController {
 
     @RequestMapping(value = "/{id}")
     public User getUser(@PathVariable Long id){
-        return userRepository.findById(id)
-                .orElseThrow(()-> new BusinessException("User Not Found", HttpStatus.NOT_FOUND));
+        Optional<User> optionalUser = userRepository.findById(id);
+        User existUser = optionalUser.orElseThrow();
+        return existUser;
     }
 }
