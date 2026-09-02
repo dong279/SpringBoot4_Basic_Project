@@ -28,6 +28,7 @@ class CustomerRepositoryTest {
         assertThat(addCustomer.getCustomerName()).isEqualTo("둘리");
     }
 
+    @Test
     //2. Customer 조회
     void testFindBy(){
         Optional<Customer> optionalCustomer = customerRepository.findById(1L);
@@ -35,5 +36,7 @@ class CustomerRepositoryTest {
             Customer existCustomer = optionalCustomer.get();
             assertThat(existCustomer.getId()).isEqualTo(1L);
         }
+        //ifPresent(Consumer) Consumer의 추상 메서드가 void accept(T t)
+        optionalCustomer.ifPresent(customer -> System.out.println(customer.getCustomerName()));
     }
 }
