@@ -45,6 +45,7 @@ public class userRestController {
 
     @GetMapping("/{email}/")
     public User getUserByEmail(@PathVariable String email){
-
+        userRepository.findByEmail(email)
+                .orElseThrow(()->new BusinessException("User Not Found",HttpStatus.NOT_FOUND));
     }
 }
