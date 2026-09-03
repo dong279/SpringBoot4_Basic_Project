@@ -21,9 +21,12 @@ public class UserController {
         return "leaf";
     }
 
+    /*
+          public ModelAndView(String viewName, String modelName, Object modelObject)
+    */
     @GetMapping("/index")
     public ModelAndView userlist() {
         List<User> userList = userRepository.findAll();
-        return new ModelAndView();
+        return new ModelAndView("index", "users", userList);
     }
 }
