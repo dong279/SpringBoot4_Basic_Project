@@ -5,6 +5,7 @@ import com.rookies6.myspringboot4project.exception.BusinessException;
 import com.rookies6.myspringboot4project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,11 @@ public class userRestController {
     public User getUser(@PathVariable Long id){
         Optional<User> optionalUser = userRepository.findById(id); //Optional<User>
         //orElseThrow(Supplier) Supplier의 추상 메서드 ()->T
+        User existUser = getUser(optionalUser);
+        return existUser;
+    }
+
+    private static @NonNull User getUser(Optional<User> optionalUser) {
         User existUser = optionalUser.orElseThrow(
                 ()->new BusinessException("User Not Found",HttpStatus.NOT_FOUND));
         return existUser;
@@ -45,7 +51,7 @@ public class userRestController {
 
     @GetMapping("/{email}/")
     public User getUserByEmail(@PathVariable String email){
-        userRepository.findByEmail(email)
-                .orElseThrow(()->new BusinessException("User Not Found",HttpStatus.NOT_FOUND));
+        User existUser = getUser(userRepository.findByEmail(email));
+        return existUser;
     }
 }
