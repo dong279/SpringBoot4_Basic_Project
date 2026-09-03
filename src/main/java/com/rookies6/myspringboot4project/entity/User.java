@@ -1,6 +1,8 @@
 package com.rookies6.myspringboot4project.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,9 +16,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
+    @NotEmpty
     private String name;
+
     @Column(unique = true, nullable = false)
+    @NotBlank(message = "email 주소는 필수 입력 항목입니다.")
     private String email;
 
     @Column(nullable = false, updatable = false)
