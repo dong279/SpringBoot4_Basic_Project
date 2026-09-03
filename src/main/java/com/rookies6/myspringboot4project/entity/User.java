@@ -1,6 +1,7 @@
 package com.rookies6.myspringboot4project.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class User {
 
     @Column(unique = true, nullable = false)
     @NotBlank(message = "email 주소는 필수 입력 항목입니다.")
+    @Email
     private String email;
 
     @Column(nullable = false, updatable = false)
