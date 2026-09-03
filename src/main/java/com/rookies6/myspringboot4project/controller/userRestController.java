@@ -57,6 +57,10 @@ public class userRestController {
 
     @PatchMapping("/{email}/")
     public User updateUser(@PathVariable String email,@RequestBody User userDetail){
-
+        User existUser = getUser(userRepository.findByEmail(email));
+        //Setter 메서드 호출
+        existUser.setName(userDetail.getName());
+        //save()를 호출해야 updateQuery가 처리됨
+        return userRepository.save(existUser);
     }
 }
