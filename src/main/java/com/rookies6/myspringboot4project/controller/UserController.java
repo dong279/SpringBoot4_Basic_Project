@@ -48,9 +48,9 @@ public class UserController {
             return "add-user";
         }
         userRepository.save(user);
-        model.addAttribute("users", userRepository.findAll());
-        return "index";
-//        return "redirect:/index";
+//        model.addAttribute("users", userRepository.findAll());
+//        return "index";
+        return "redirect:/index";
     }
 
     @GetMapping("/edit/{id}")
