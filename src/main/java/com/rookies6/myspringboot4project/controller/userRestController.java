@@ -43,4 +43,8 @@ public class userRestController {
         return userRepository.findAll();
     }
 
+    @GetMapping("/{email}/")
+    public User getUserByEmail(@PathVariable String email){
+
+    }
 }
