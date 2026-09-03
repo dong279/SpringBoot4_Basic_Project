@@ -29,4 +29,9 @@ public class UserController {
         List<User> userList = userRepository.findAll();
         return new ModelAndView("index", "users", userList);
     }
+
+    @GetMapping("/signup")
+    public String showSignUpForm() {
+        return "add-user";
+    }
 }
