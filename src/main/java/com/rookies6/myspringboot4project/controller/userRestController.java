@@ -54,4 +54,9 @@ public class userRestController {
         User existUser = getUser(userRepository.findByEmail(email));
         return existUser;
     }
+
+    @PatchMapping("/{email}/")
+    public User updateUser(@PathVariable String email,@RequestBody User userDetail){
+
+    }
 }
