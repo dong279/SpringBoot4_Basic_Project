@@ -27,12 +27,12 @@ public class userRestController {
 //    }
 
     @PostMapping
-    public User createUser(@RequestBody User userDetail){
+    public User createUser(@RequestBody User userDetail) {
         return userRepository.save(userDetail);
     }
 
     @RequestMapping(value = "/{id}")
-    public User getUser(@PathVariable Long id){
+    public User getUser(@PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id); //Optional<User>
         //orElseThrow(Supplier) Supplier의 추상 메서드 ()->T
         User existUser = getUser(optionalUser);
@@ -41,23 +41,23 @@ public class userRestController {
 
     private static @NonNull User getUser(Optional<User> optionalUser) {
         User existUser = optionalUser.orElseThrow(
-                ()->new BusinessException("User Not Found",HttpStatus.NOT_FOUND));
+                () -> new BusinessException("User Not Found", HttpStatus.NOT_FOUND));
         return existUser;
     }
 
     @GetMapping
-    public List<User> getUser(){
+    public List<User> getUser() {
         return userRepository.findAll();
     }
 
     @GetMapping("/{email}/")
-    public User getUserByEmail(@PathVariable String email){
+    public User getUserByEmail(@PathVariable String email) {
         User existUser = getUser(userRepository.findByEmail(email));
         return existUser;
     }
 
     @PatchMapping("/{email}/")
-    public User updateUser(@PathVariable String email,@RequestBody User userDetail){
+    public User updateUser(@PathVariable String email, @RequestBody User userDetail) {
         User existUser = getUser(userRepository.findByEmail(email));
         //Setter 메서드 호출
         existUser.setName(userDetail.getName());
@@ -66,11 +66,15 @@ public class userRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id){
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         User existUser = getUser(userRepository.findById(id));
         userRepository.delete(existUser);
 
         return ResponseEntity.ok("Id = " + id + "User가 삭제 되었습니다.");
     }
 
+    @GetMapping("/welcome")
+    public String welcome() {
+        return "Welcome this endpoint is not secure";
+    }
 }
