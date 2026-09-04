@@ -1,5 +1,6 @@
 package com.rookies6.myspringboot4project.auth.config;
 
+import com.rookies6.myspringboot4project.auth.userinfo.UserInfoUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -21,6 +22,11 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new UserInfoUserDetailsService();
+    }
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
