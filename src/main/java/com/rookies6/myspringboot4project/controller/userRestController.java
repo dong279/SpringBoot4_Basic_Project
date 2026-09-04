@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class userRestController {
     }
 
     @RequestMapping(value = "/{id}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public User getUser(@PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id); //Optional<User>
         //orElseThrow(Supplier) Supplier의 추상 메서드 ()->T
@@ -46,6 +48,7 @@ public class userRestController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<User> getUser() {
         return userRepository.findAll();
     }
