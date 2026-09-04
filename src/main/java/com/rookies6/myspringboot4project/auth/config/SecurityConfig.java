@@ -1,4 +1,4 @@
-package com.rookies6.myspringboot4project.auth;
+package com.rookies6.myspringboot4project.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
