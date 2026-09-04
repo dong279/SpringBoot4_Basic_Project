@@ -18,7 +18,7 @@ import java.util.Optional;
 @Slf4j
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
-public class userRestController {
+public class UserRestController {
     private final UserRepository userRepository;
 
     //Constructor Injection - Mock 객체 주입이 가능
