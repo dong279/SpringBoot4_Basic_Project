@@ -24,7 +24,7 @@ public class DataInitRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         log.info("Starting data initialization...");
 
-        // Create students
+        // Create students1
         createStudents();
 
         log.info("Data initialization completed successfully");
