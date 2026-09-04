@@ -14,21 +14,22 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
-    
-@EnableMethodSecurity
+
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/api/users/welcome").permitAll()
+                    auth.requestMatchers("/api/users/welcome", "/userinfos/new").permitAll()
                             .requestMatchers("/api/users/**").authenticated();
                 })
                 .formLogin(withDefaults())
                 .build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
