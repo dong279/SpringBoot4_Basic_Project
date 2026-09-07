@@ -1,4 +1,4 @@
-//package com.rookies6.myspringboot4project.runner;
+package com.rookies6.myspringboot4project.runner;//package com.rookies6.myspringboot4project.runner;
 //
 //import com.rookies6.myspringboot4project.entity.Student;
 //import com.rookies6.myspringboot4project.repository.StudentRepository;
