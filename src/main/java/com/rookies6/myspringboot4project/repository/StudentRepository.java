@@ -11,11 +11,13 @@ import java.util.Optional;
 //StudentRepository 인터페이스
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
+    //학번으로 조회
     Optional<Student> findByStudentNumber(String studentNumber);
 
+    boolean existsByStudentNumber(String studentNumber);
+
+    //PK로 조회
     //LEFT JOIN FETCH : 상세정보가 없는 학생도 조회되어야 하므로 외부 조인을 사용한다
     @Query("SELECT s FROM Student s LEFT JOIN FETCH s.studentDetail WHERE s.id = :id")
     Optional<Student> findByIdWithStudentDetail(@Param("id") Long id);
-
-    boolean existsByStudentNumber(String studentNumber);
 }
