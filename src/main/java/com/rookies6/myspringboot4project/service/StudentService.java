@@ -98,6 +98,7 @@ public class StudentService {
         return StudentDTO.Response.fromEntity(savedStudent);
     }
 
+
     @Transactional
     public StudentDTO.Response updateStudent(Long id, StudentDTO.Request request) {
         // Find the student
@@ -112,6 +113,20 @@ public class StudentService {
             throw new BusinessException(ErrorCode.STUDENT_NUMBER_DUPLICATE,
                     request.getStudentNumber());
         }
+//    @Transactional
+//    public StudentDTO.Response updateStudent_Old(Long id, StudentDTO.Request request) {
+//        // Find the student
+//        Student student = studentRepository.findById(id)
+//                .orElseThrow(() -> new BusinessException(ErrorCode.RESOURCE_NOT_FOUND,
+//                        "Student", "id", id));
+//
+//        // 저장된 학번과 요청한 학번이 일치하지 않으면
+//        if (!student.getStudentNumber().equals(request.getStudentNumber()) &&
+//                //요청한 학번이 중복되는지 체크하기 위해서 해당학번으로 Student 조회
+//                studentRepository.existsByStudentNumber(request.getStudentNumber())) {
+//            throw new BusinessException(ErrorCode.STUDENT_NUMBER_DUPLICATE,
+//                    request.getStudentNumber());
+//        }
 
         // Update student basic info
         student.setName(request.getName());
