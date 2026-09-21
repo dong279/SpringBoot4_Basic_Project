@@ -53,7 +53,7 @@ public class DefaultExceptionAdvice {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("message", e.getMessage());
         result.put("httpStatus", HttpStatus.BAD_REQUEST.value());
-
+    
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
