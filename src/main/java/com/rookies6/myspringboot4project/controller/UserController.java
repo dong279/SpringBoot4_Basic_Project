@@ -27,10 +27,10 @@ public class UserController {
     }
 
     /*
-          public ModelAndView(String viewName, String modelName, Object modelObject)
-    */
+        public ModelAndView(String viewName, String modelName, Object modelObject)
+     */
     @GetMapping("/index")
-    public ModelAndView userlist() {
+    public ModelAndView userList() {
         List<User> userList = userRepository.findAll();
         return new ModelAndView("index", "users", userList);
     }
@@ -48,6 +48,7 @@ public class UserController {
             return "add-user";
         }
         userRepository.save(user);
+
 //        model.addAttribute("users", userRepository.findAll());
 //        return "index";
         return "redirect:/index";
